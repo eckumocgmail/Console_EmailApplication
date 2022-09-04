@@ -1,0 +1,5 @@
+D:\Projects\Console_EmailApplication\obj\Release\net5.0\Console_EmailApplication.csproj.AssemblyReference.cache
+D:\Projects\Console_EmailApplication\obj\Release\net5.0\Console_EmailApplication.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Console_EmailApplication\obj\Release\net5.0\Console_EmailApplication.AssemblyInfoInputs.cache
+D:\Projects\Console_EmailApplication\obj\Release\net5.0\Console_EmailApplication.AssemblyInfo.cs
+D:\Projects\Console_EmailApplication\obj\Release\net5.0\Console_EmailApplication.csproj.CoreCompileInputs.cache
