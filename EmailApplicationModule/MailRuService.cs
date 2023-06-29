@@ -14,21 +14,21 @@ using System.Text;
 /// <summary>
 /// Сервис умеет отправлять электронную почту и считывать входящие письма
 /// </summary>
-public class MailRuService
+public sealed class MailRuService
 {
-    protected string EmailName;
-    protected string EmailAddress;
-    protected string EmailPassword;
-    protected string SmtpHost;
-    protected int SmtpPort;        
-    protected string PopHost;
-    protected int PopPort;
-    
+    public string EmailName { get; set; }
+    public string EmailAddress { get; set; }
+    public string AppPassword { get; set; }
+    public string SmtpHost { get; set; }
+    public int SmtpPort { get; set; }
+    public string PopHost { get; set; }
+    public int PopPort { get; set; }
+
     public MailRuService(string applicationPassword)
     {
         this.EmailName = "Администрация сайта";
         this.EmailAddress = "kba-2018@mail.ru";
-        this.EmailPassword = applicationPassword;
+        this.AppPassword = applicationPassword;
         this.SmtpHost = "smtp.mail.ru";
         this.SmtpPort = 587;
         this.PopHost = "pop.mail.ru";
@@ -61,7 +61,7 @@ public class MailRuService
                         builder.Attachments.Add(resource);
                 emailMessage.Body = builder.ToMessageBody();
 
-                smtp.Authenticate(this.EmailAddress, this.EmailPassword);
+                smtp.Authenticate(this.EmailAddress, this.AppPassword);
                 smtp.Send(emailMessage);
                 smtp.Disconnect(true);
             }
@@ -80,7 +80,7 @@ public class MailRuService
             client.ServerCertificateValidationCallback = (s, c, h, e) => true;
             client.Connect(PopHost, PopPort);
             client.AuthenticationMechanisms.Remove("XOAUTH2");
-            client.Authenticate(EmailAddress, this.EmailPassword);
+            client.Authenticate(EmailAddress, this.AppPassword);
             client.Disconnect(true);
 
         }
@@ -96,7 +96,7 @@ public class MailRuService
             client.ServerCertificateValidationCallback = (s, c, h, e) => true;
             client.Connect(PopHost, PopPort);
             client.AuthenticationMechanisms.Remove("XOAUTH2");
-            client.Authenticate(EmailAddress, this.EmailPassword);
+            client.Authenticate(EmailAddress, this.AppPassword);
             for (int i = 0; i < client.Count; i++)
             {
                 MimeMessage message = client.GetMessage(i);
@@ -139,7 +139,7 @@ public class MailRuService
                 {
                     Subject = subject,
                     Date = $"{date.Day}.{date.Month}.{date.Year}",
-                    Sender = sender.Address.ToString(),
+                    Sender = sender?.Address.ToString(),
                     Text = text,
                     Files = files
                 });
@@ -157,6 +157,9 @@ public class MailRuService
         public string Subject { get; set; }
         public string Text { get; set; }
         public IDictionary<string, FileModel> Files { get; set; }
+
+        public override string ToString()
+            => $"{GetHashCode()} {Date.ToString()} {Sender} {Subject}";
     }
 
     public class FileModel
