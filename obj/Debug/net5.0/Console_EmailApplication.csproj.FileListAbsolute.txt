@@ -52,3 +52,4 @@ D:\System-Config\MyApplications\Console_EmailApplication\Console_InputApplicatio
 D:\System-Config\MyApplications\Console_EmailApplication\Console_InputApplication.runtimeconfig.json
 D:\System-Config\MyApplications\Console_EmailApplication\Console_InputApplication.runtimeconfig.dev.json
 D:\System-Config\MyApplications\Console_EmailApplication\Console_InputApplication.exe
+D:\System-Config\ProjectsConsole\Console_EmailApplication\obj\Debug\net5.0\Console_EmailApplication.sourcelink.json

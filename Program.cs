@@ -65,5 +65,6 @@ internal class Program
             default: throw new ArgumentException();
 
         }
+    }
 }
  
